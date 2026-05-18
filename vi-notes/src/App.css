@@ -1,0 +1,197 @@
+:root {
+  --primary: #6366f1;   /* Indigo */
+  --secondary: #1e293b; /* Dark slate */
+  --accent: #22c55e;    /* Green */
+  --text: #f1f5f9;
+  --bg: #0f172a;
+}
+.body {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* flex-direction: column; */
+    /* border: 1px solid pink; */
+    height: 80vh;
+}
+
+textarea {
+    border: 2px solid white;
+    background: var(--secondary);
+    color: white;
+    width: 95%;
+    height: 95%;
+    /* margin-top: 20px; */
+    padding: 10px;
+    font-size: 22px;
+    border-radius: 10px;
+    /* border: none; */
+    /* outline: none;  */
+}
+
+.A-body {
+    /* border: 1px solid black; */
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+.A-body h1{
+    /* border: 2px solid white; */
+    background-color: var(--primary);
+    padding: 12px 183px;
+    border-radius: 12px;
+}
+.feature{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 80%;
+    background: rgba(255, 255,255,0.05 );
+    border-radius: 12px;
+    font-size: 20px;
+    box-shadow: 0 0px 20px rgba(135, 135, 135, 0.3);
+    
+    /* border: 2px solid green; */
+}
+.feature div:nth-child(1){
+    color: var(--accent);
+}
+.feature div:nth-child(2){
+    color: var(--accent);
+}
+.E-body {
+    /* border: 1px solid black; */
+    width: 60%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* background: #0f172a; */
+    background: var(--bg);
+    /* color: white; */
+    color: var(--text);
+    text-align: center;
+    box-sizing: border-box;
+}
+.app{
+    margin-top: 24px;
+}
+.s-button{
+    padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: var(--accent);
+    cursor: pointer;
+    font-size: 16px;
+}
+.r-button{
+    padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+.l-button{
+    padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 12px;
+}
+.login input{
+    background-color: var(--bg);
+    border: none;
+    border-radius: 12px;
+    border: 1px solid white;
+    padding: 12px 24px;
+    color: white;
+}
+.login button{
+    padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+.register{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.register input{
+    background-color: var(--bg);
+    border: none;
+    border-radius: 12px;
+    border: 1px solid white;
+    padding: 12px 24px;
+    color: white;
+}
+.register button{
+    padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+.font-size{
+    font-size: 40px;
+    background: linear-gradient(90deg, #8A2BE2, #FF007F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 140px;
+}
+.flex h1{
+    font-size: 64px;
+    background: linear-gradient(90deg, #8A2BE2, #FF007F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0px 20px;
+    border-radius: 12px;
+}
+button {
+  transition: all 0.5s ease;
+  padding: 7px 18px;
+    border-radius: 12px;
+    color: #ffffff;
+    border: none;
+    font-weight: 800;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+  background: linear-gradient(135deg, #6366f1, #22c55e);
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #22c55e, #6366f1);
+}
