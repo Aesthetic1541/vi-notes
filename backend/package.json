@@ -8,7 +8,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aditya Singh Khagi",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
