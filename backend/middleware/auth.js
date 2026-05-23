@@ -1,16 +1,32 @@
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    const decoded = jwt.verify(token, "secretkey");
+    try {
 
-    req.userId = decoded.userId;
+        const token = req.headers.authorization?.split(" ")[1];
 
-    next();
-  } catch {
-    res.status(401).json({ message: "Unauthorized" });
-  }
+        if (!token) {
+            return res.status(401).json({
+                message: "Access denied. Token missing"
+            });
+        }
+
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        req.userId = decoded.userId;
+
+        next();
+
+    } catch (error) {
+
+        res.status(401).json({
+            message: "Unauthorized access"
+        });
+
+    }
 };
 
 module.exports = auth;

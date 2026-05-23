@@ -17,9 +17,20 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB Connected Successfully"))
-.catch((err) => console.log("Database Connection Error:", err));
+
+// Database connection
+if (process.env.MONGO_URI) {
+
+    mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB Connected Successfully"))
+    .catch((err) => console.log("Database Connection Error:", err));
+
+}
+else {
+
+    console.log("MongoDB URI not configured");
+
+}
 
 
 // Home Route
@@ -30,9 +41,16 @@ app.get('/', (req, res) => {
 
 // Save Notes API
 app.post('/api/save-note', auth, async (req, res) => {
+
     try {
 
         const { context, keystrokes, paste } = req.body;
+
+        if (!context) {
+            return res.status(400).json({
+                message: "Note content cannot be empty"
+            });
+        }
 
         const newnote = new note({
             context,
@@ -45,16 +63,18 @@ app.post('/api/save-note', auth, async (req, res) => {
 
         res.json({
             success: true,
-            message: "Received successfully"
+            message: "Note saved successfully"
         });
 
     } catch (error) {
+
         console.log(error);
 
         res.status(500).json({
             error: "Server Error"
         });
     }
+
 });
 
 
@@ -65,7 +85,6 @@ app.post('/api/register', async (req, res) => {
 
         const { email, password } = req.body;
 
-        // validation
         if (!email || !password) {
             return res.status(400).json({
                 message: "Email and password are required"
@@ -78,7 +97,6 @@ app.post('/api/register', async (req, res) => {
             });
         }
 
-        // user exists check
         const ifuserexist = await user.findOne({ email });
 
         if (ifuserexist) {
@@ -87,7 +105,6 @@ app.post('/api/register', async (req, res) => {
             });
         }
 
-        // hash password
         const hashedpassword = await bcrypt.hash(password, 10);
 
         const newuser = new user({
@@ -102,8 +119,7 @@ app.post('/api/register', async (req, res) => {
             message: "User registered successfully"
         });
 
-    }
-    catch (error) {
+    } catch (error) {
 
         console.log(error);
 
@@ -122,14 +138,12 @@ app.post('/api/login', async (req, res) => {
 
         const { email, password } = req.body;
 
-        // validation
         if (!email || !password) {
             return res.status(400).json({
                 message: "Please enter all fields"
             });
         }
 
-        // check user
         const ifuser = await user.findOne({ email });
 
         if (!ifuser) {
@@ -138,7 +152,6 @@ app.post('/api/login', async (req, res) => {
             });
         }
 
-        // compare password
         const ismatch = await bcrypt.compare(
             password,
             ifuser.password
@@ -150,21 +163,19 @@ app.post('/api/login', async (req, res) => {
             });
         }
 
-        // generate token
         const token = jwt.sign(
             { userId: ifuser._id },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || "mysecretkey",
             { expiresIn: "1d" }
         );
 
         res.json({
             success: true,
             message: "Login successful",
-            token,
+            token
         });
 
-    }
-    catch (error) {
+    } catch (error) {
 
         console.log(error);
 
